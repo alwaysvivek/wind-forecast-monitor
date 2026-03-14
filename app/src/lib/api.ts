@@ -3,8 +3,14 @@ import { ForecastResponse } from '@/types';
 
 const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
+console.log('--- API CONFIGURATION ---');
+console.log('Connecting to:', API_BASE_URL);
+console.log('Mode:', process.env.NODE_ENV);
+console.log('-------------------------');
+
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
+  timeout: 15000, // Increase timeout for Render free tier sleep
   headers: {
     'Content-Type': 'application/json',
   },
