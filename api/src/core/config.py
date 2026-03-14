@@ -11,7 +11,10 @@ class Settings(BaseSettings):
     ELEXON_API_BASE_URL: str = "https://data.elexon.co.uk/bmrs/api/v1"
     
     # CORS
-    CORS_ORIGINS: List[str] = ["http://localhost:3000"]
+    CORS_ORIGINS: List[str] = [
+        "http://localhost:3000",
+        "https://wind-forecast-monitor-one.vercel.app"
+    ]
     
     # Paths
     BASE_DIR: str = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
