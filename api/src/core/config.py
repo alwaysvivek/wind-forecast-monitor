@@ -1,6 +1,8 @@
+from pydantic import AnyHttpUrl, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
-from typing import List
+from typing import List, Any
 import os
+import json
 
 class Settings(BaseSettings):
     PROJECT_NAME: str = "Wind Forecast Monitor"
@@ -15,6 +17,17 @@ class Settings(BaseSettings):
         "http://localhost:3000",
         "https://wind-forecast-monitor-one.vercel.app"
     ]
+
+    @field_validator("CORS_ORIGINS", mode="before")
+    @classmethod
+    def assemble_cors_origins(cls, v: Any) -> Any:
+        if isinstance(v, str) and not v.startswith("["):
+            return [i.strip() for i in v.split(",")]
+        elif isinstance(v, (list, str)):
+            if isinstance(v, str):
+                return json.loads(v)
+            return v
+        raise ValueError(v)
     
     # Paths
     BASE_DIR: str = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
