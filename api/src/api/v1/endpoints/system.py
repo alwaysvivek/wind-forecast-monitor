@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Request
 import time
+import os
 import httpx
 from src.core.config import settings
 
