@@ -33,7 +33,7 @@ const CustomTooltip = ({ active, payload, label }: any) => {
             <span className="w-2 h-2 rounded-full" style={{ backgroundColor: entry.color }}></span>
             <span className="capitalize">{entry.name}:</span>
             <span className="font-mono font-medium">
-              {entry.value.toLocaleString()} MW
+              {entry.value !== null && entry.value !== undefined ? entry.value.toLocaleString() : '---'} MW
             </span>
           </div>
         ))}

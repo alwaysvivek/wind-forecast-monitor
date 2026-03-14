@@ -27,7 +27,7 @@ export const MetricCard: React.FC<MetricCardProps> = ({
           <p className="text-sm font-medium text-text-secondary">{title}</p>
           <div className="mt-2 flex items-baseline">
             <h3 className="text-2xl font-bold text-text-primary font-mono">
-              {value !== undefined ? value.toLocaleString() : '---'}
+              {value !== undefined && value !== null ? value.toLocaleString() : '---'}
             </h3>
             {unit && <span className="ml-1 text-xs font-semibold text-text-secondary uppercase">{unit}</span>}
           </div>
