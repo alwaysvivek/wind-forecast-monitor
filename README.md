@@ -2,6 +2,15 @@
 
 A visually stunning and data-centric application to track the accuracy of the UK's National Grid wind generation forecasts. Built as a full-stack solution with **FastAPI** and **Next.js**, leveraging live data from the **Elexon BMRS API**.
 
+---
+
+## 🌐 Live Resources
+
+- **Frontend Dashboard**: [wind-forecast-monitor-one.vercel.app](https://wind-forecast-monitor-one.vercel.app/)
+- **Backend Health Check**: [wind-forecast-monitor.onrender.com/api/v1/health](https://wind-forecast-monitor.onrender.com/api/v1/health)
+
+---
+
 ## 🚀 Overview
 
 The **Wind Forecast Monitor** allows grid operators and analysts to visualize the delta between "Actual" wind generation and "Forecasted" generation. It specifically addresses the complexity of varying data resolutions, aligning 30-minute actuals with 60-minute forecasts through linear interpolation.
