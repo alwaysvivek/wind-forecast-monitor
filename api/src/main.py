@@ -3,6 +3,7 @@ from fastapi.responses import RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 import os
+import time
 
 from src.api.v1.api import api_router
 from src.core.config import settings
@@ -51,6 +52,9 @@ def create_app() -> FastAPI:
 
     # Include API Router
     app.include_router(api_router, prefix=settings.API_V1_STR)
+
+    # Global app state for monitoring
+    app.state.start_time = time.time()
 
     @app.get("/", include_in_schema=False)
     def root_redirect():
