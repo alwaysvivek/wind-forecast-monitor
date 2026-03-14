@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from fastapi.responses import RedirectResponse
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 import os
@@ -50,6 +51,10 @@ def create_app() -> FastAPI:
 
     # Include API Router
     app.include_router(api_router, prefix=settings.API_V1_STR)
+
+    @app.get("/", include_in_schema=False)
+    def root_redirect():
+        return RedirectResponse(url=f"{settings.API_V1_STR}/health")
 
     return app
 
