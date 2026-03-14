@@ -10,7 +10,7 @@ console.log('-------------------------');
 
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
-  timeout: 15000, // Increase timeout for Render free tier sleep
+  timeout: 60000, // 60s timeout for Render free tier cold starts
   headers: {
     'Content-Type': 'application/json',
   },
