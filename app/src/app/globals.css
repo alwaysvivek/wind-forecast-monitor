@@ -1,0 +1,48 @@
+@import "tailwindcss";
+
+@theme {
+  --color-energy-blue: #2563EB;
+  --color-wind-emerald: #10B981;
+  --color-slate-bg: #F8FAFC;
+  --color-surface: #FFFFFF;
+  --color-text-primary: #1E293B;
+  --color-text-secondary: #64748B;
+  --color-accent-warning: #F59E0B;
+  
+  --radius-xl: 12px;
+  --radius-lg: 8px;
+}
+
+:root {
+  --background: #F8FAFC;
+  --foreground: #1E293B;
+  
+  --card: #FFFFFF;
+  --card-foreground: #1E293B;
+  
+  --primary: #2563EB;
+  --primary-foreground: #FFFFFF;
+  
+  --secondary: #10B981;
+  --secondary-foreground: #FFFFFF;
+  
+  --muted: #64748B;
+  --muted-foreground: #94A3B8;
+  
+  --border: #E2E8F0;
+}
+
+@layer base {
+  body {
+    @apply bg-slate-bg text-text-primary antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+}
+
+.glass-card {
+  @apply bg-surface/80 backdrop-blur-md border border-white/20 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)];
+}
+
+.chart-container {
+  @apply rounded-xl border border-slate-200 bg-white p-6 shadow-sm;
+}
