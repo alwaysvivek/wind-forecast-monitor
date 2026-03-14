@@ -14,11 +14,18 @@ async def health_check(request: Request):
     """
     uptime_seconds = time.time() - request.app.state.start_time
     
-    # Dependency Check: Ping Elexon
+    # Dependency Check: Ping Elexon with a valid (light) request
     elexon_status = "unknown"
     try:
         async with httpx.AsyncClient() as client:
-            response = await client.get(f"{settings.ELEXON_API_BASE_URL}/datasets", timeout=2.0)
+            # We use a real (but tiny) request because BMRS returns 404 for empty queries
+            elexon_url = f"{settings.ELEXON_API_BASE_URL}/datasets/FUELHH/stream"
+            params = {
+                "settlementDateFrom": "2024-01-01",
+                "settlementDateTo": "2024-01-01",
+                "fuelType": "WIND"
+            }
+            response = await client.get(elexon_url, params=params, timeout=5.0)
             elexon_status = "healthy" if response.status_code == 200 else "unhealthy"
     except Exception:
         elexon_status = "unreachable"
